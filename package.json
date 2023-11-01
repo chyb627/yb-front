@@ -1,0 +1,34 @@
+{
+  "name": "yb-front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 7000",
+    "build": "next build",
+    "start": "next start -p 7000",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "test:typescript": "tsc",
+    "test:lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "classnames": "^2.3.2",
+    "next": "^13.5.6",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "^13.5.6",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "postcss": "^8",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
