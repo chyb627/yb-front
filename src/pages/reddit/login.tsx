@@ -2,12 +2,14 @@ import { FormEvent, useCallback, useState } from 'react';
 import Link from 'next/link';
 import InputGroup from '@/components/reddit/InputGroup';
 import axios from 'axios';
+import { useAuthDispatch } from '@/context/reddit/auth';
 import { useRouter } from 'next/router';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<any>({});
+  const dispatch = useAuthDispatch();
   const router = useRouter();
 
   const handleSubmit = useCallback(
@@ -16,22 +18,16 @@ const Login = () => {
       e.preventDefault();
 
       try {
-        const res = await axios.post(
-          '/auth/login',
-          {
-            email,
-            password,
-          },
-          { withCredentials: true },
-        );
-
+        const res = await axios.post('/auth/login', { password, email }, { withCredentials: true });
         console.log('res', res);
+        dispatch('LOGIN', res.data?.user);
+        router.push('/reddit');
       } catch (error: any) {
-        console.log('error', error);
-        setErrors(error?.response.data || {});
+        console.log(error);
+        setErrors(error.response?.data || {});
       }
     },
-    [email, password],
+    [dispatch, email, password, router],
   );
 
   return (
