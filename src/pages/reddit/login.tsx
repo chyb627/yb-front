@@ -2,15 +2,18 @@ import { FormEvent, useCallback, useState } from 'react';
 import Link from 'next/link';
 import InputGroup from '@/components/reddit/InputGroup';
 import axios from 'axios';
-import { useAuthDispatch } from '@/context/reddit/auth';
+import { useAuthDispatch, useAuthState } from '@/context/reddit/auth';
 import { useRouter } from 'next/router';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<any>({});
+  const { authenticated } = useAuthState();
   const dispatch = useAuthDispatch();
   const router = useRouter();
+
+  if (authenticated) router.push('/reddit');
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
