@@ -86,7 +86,7 @@ const SubPage = () => {
                 <div className="absolute" style={{ top: -15 }}>
                   {sub.imageUrl && (
                     <Image
-                      src={`http://${sub.imageUrl}`}
+                      src={sub.imageUrl}
                       alt="커뮤니티 이미지"
                       width={70}
                       height={70}
